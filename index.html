@@ -46,12 +46,12 @@
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg, rgba(20,32,26,0.55) 0%, rgba(20,32,26,0.35) 45%, rgba(20,32,26,0.75) 100%);
+    background:linear-gradient(180deg, rgba(20,32,26,0.35) 0%, rgba(20,32,26,0.18) 45%, rgba(20,32,26,0.5) 100%);
   }
   .scrim{
     position:absolute;
     inset:0;
-    background:linear-gradient(100deg, rgba(20,32,26,0.72) 0%, rgba(20,32,26,0.42) 38%, rgba(20,32,26,0.05) 62%);
+    background:linear-gradient(100deg, rgba(20,32,26,0.45) 0%, rgba(20,32,26,0.22) 38%, rgba(20,32,26,0.02) 62%);
   }
 
   /* ---------- Nav ---------- */
@@ -135,33 +135,42 @@
     flex:0 0 230px;
     position:relative;
     height:300px;
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
-    padding:16px;
-    border:1px solid rgba(255,255,255,0.12);
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:14px;
+    padding:24px 18px;
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 10px 30px rgba(0,0,0,0.22);
     cursor:pointer;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover{
+    background:rgba(255,255,255,0.16);
+    border-color:rgba(255,255,255,0.4);
   }
   .card[aria-disabled="true"]{ cursor:default; }
-  .card::before{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(200deg, var(--card-a) 0%, var(--card-b) 100%);
-  }
-  .card::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 60%);
-  }
   .card-icon{
-    position:absolute; top:14px; right:14px;
-    width:30px;height:30px; border-radius:50%;
-    background:rgba(255,255,255,0.22); z-index:2;
+    width:64px;height:64px;
+    border-radius:50%;
+    background:linear-gradient(160deg, var(--card-a) 0%, var(--card-b) 100%);
+    flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.28);
   }
-  .card-body{ position:relative; z-index:2; }
+  .card-body{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
   .card-tag{
     font-size:0.72rem; font-weight:600; color:var(--paper-soft);
     opacity:0.85; margin-bottom:6px; display:block;
@@ -170,12 +179,13 @@
     font-family:'Archivo', sans-serif;
     font-size:1.1rem;
     margin:0;
-    line-height:1.15;
+    line-height:1.2;
   }
   .card-desc{
     font-size:0.78rem;
     color:rgba(255,255,255,0.85);
     margin:6px 0 0;
+    max-width:22ch;
     max-height:0;
     opacity:0;
     overflow:hidden;
@@ -292,7 +302,7 @@
 
     card.innerHTML = `
       <div class="card-icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${app.icon}</svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${app.icon}</svg>
       </div>
       <div class="card-body">
         <span class="card-tag">${tag}</span>
